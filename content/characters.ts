@@ -1,0 +1,215 @@
+import type { Character } from "./types";
+
+const placeholder = "/images/placeholder.jpg";
+
+export const characters: Character[] = [
+  {
+    slug: "minecraft-steve-alex",
+    name_ua: "Стів і Алекс (Minecraft)",
+    short_ua: "Піксельна пригода з іграми, квестами та командними челенджами.",
+    description_ua:
+      "Інтерактивна програма у стилі Minecraft: тематичні завдання, рухливі ігри, змагання команд та фото з героями.",
+    age_range_ua: "5-10 років",
+    duration_options_minutes: [60, 90, 120],
+    base_price_uah_from: 2200,
+    tags_ua: ["Minecraft", "квест", "командні ігри"],
+    hero_image: { src: placeholder, alt: "Стів і Алекс з Minecraft" },
+    images: [
+      { src: placeholder, alt: "Minecraft аніматори" },
+      { src: placeholder, alt: "Minecraft конкурси" },
+      { src: placeholder, alt: "Minecraft фотозона" },
+    ],
+    is_featured: true,
+  },
+  {
+    slug: "spider-man",
+    name_ua: "Людина-павук",
+    short_ua: "Супергеройська програма з активностями, естафетами й тренуванням спритності.",
+    description_ua:
+      "Герой Marvel влаштовує динамічну вечірку: місії, командні ігри, супергеройські випробування та фотосесія.",
+    age_range_ua: "4-9 років",
+    duration_options_minutes: [60, 90],
+    base_price_uah_from: 2000,
+    tags_ua: ["супергерої", "активні ігри", "Marvel"],
+    hero_image: { src: placeholder, alt: "Людина-павук аніматор" },
+    images: [
+      { src: placeholder, alt: "Людина-павук на святі" },
+      { src: placeholder, alt: "Супергеройська естафета" },
+      { src: placeholder, alt: "Фото з Людиною-павуком" },
+    ],
+    is_featured: true,
+  },
+  {
+    slug: "superman",
+    name_ua: "Супермен",
+    short_ua: "Героїчні завдання, командні конкурси та святкова енергія.",
+    description_ua:
+      "Супермен веде дітей через веселу супергеройську академію: сили, швидкість, дружба і фінальна місія.",
+    age_range_ua: "5-11 років",
+    duration_options_minutes: [60, 90, 120],
+    base_price_uah_from: 2100,
+    tags_ua: ["супергерої", "DC", "квести"],
+    hero_image: { src: placeholder, alt: "Супермен на дитячому святі" },
+    images: [
+      { src: placeholder, alt: "Супермен проводить гру" },
+      { src: placeholder, alt: "Супергеройські конкурси" },
+      { src: placeholder, alt: "Діти з Суперменом" },
+    ],
+  },
+  {
+    slug: "elsa-anna",
+    name_ua: "Ельза та Анна",
+    short_ua: "Крижана казка з танцями, конкурсами та королівським настроєм.",
+    description_ua:
+      "Принцеси запрошують на чарівне свято: музичні ігри, тематичні завдання, коронація і пам'ятні фото.",
+    age_range_ua: "3-8 років",
+    duration_options_minutes: [60, 90],
+    base_price_uah_from: 2300,
+    tags_ua: ["принцеси", "казка", "Frozen"],
+    hero_image: { src: placeholder, alt: "Ельза та Анна" },
+    images: [
+      { src: placeholder, alt: "Крижане свято" },
+      { src: placeholder, alt: "Принцеси та діти" },
+      { src: placeholder, alt: "Королівські конкурси" },
+    ],
+    is_featured: true,
+  },
+  {
+    slug: "stitch-angel",
+    name_ua: "Стіч і Енджел",
+    short_ua: "Космічна вечірка з гумором, танцями й інтерактивними челенджами.",
+    description_ua:
+      "Яскрава програма у стилі гавайської пригоди: рухливі ігри, танці, місії дружби та веселий фінал.",
+    age_range_ua: "4-10 років",
+    duration_options_minutes: [60, 90, 120],
+    base_price_uah_from: 2400,
+    tags_ua: ["диско", "мультгерої", "Lilo & Stitch"],
+    hero_image: { src: placeholder, alt: "Стіч і Енджел" },
+    images: [
+      { src: placeholder, alt: "Стіч на святі" },
+      { src: placeholder, alt: "Енджел та ігри" },
+      { src: placeholder, alt: "Тематичні конкурси" },
+    ],
+    is_featured: true,
+  },
+  {
+    slug: "peppa-pig",
+    name_ua: "Пеппа Піг",
+    short_ua: "Добра програма для малюків з музичними та сюжетними іграми.",
+    description_ua:
+      "Пеппа проводить ніжну, безпечну анімацію для молодших дітей: прості ігри, таночки та мильні бульбашки.",
+    age_range_ua: "2-5 років",
+    duration_options_minutes: [45, 60],
+    base_price_uah_from: 1800,
+    tags_ua: ["малюки", "мультгерої", "спокійні ігри"],
+    hero_image: { src: placeholder, alt: "Пеппа Піг" },
+    images: [
+      { src: placeholder, alt: "Пеппа з дітьми" },
+      { src: placeholder, alt: "Ігри для малюків" },
+      { src: placeholder, alt: "Свято з Пеппою" },
+    ],
+  },
+  {
+    slug: "sonic",
+    name_ua: "Сонік",
+    short_ua: "Швидкісні естафети, перегони та драйвова атмосфера.",
+    description_ua:
+      "Сонік організовує активну програму з перешкодами, естафетами на швидкість і командними викликами.",
+    age_range_ua: "5-10 років",
+    duration_options_minutes: [60, 90],
+    base_price_uah_from: 2100,
+    tags_ua: ["швидкість", "активні ігри", "Sonic"],
+    hero_image: { src: placeholder, alt: "Сонік" },
+    images: [
+      { src: placeholder, alt: "Сонік естафети" },
+      { src: placeholder, alt: "Швидкісні конкурси" },
+      { src: placeholder, alt: "Фото з Соніком" },
+    ],
+  },
+  {
+    slug: "wednesday",
+    name_ua: "Венздей",
+    short_ua: "Стильна атмосферна програма з квестом і тематичними активностями.",
+    description_ua:
+      "Венздей запрошує у загадкову пригоду: квест, тематичні завдання, танцювальний флешмоб і фото-зона.",
+    age_range_ua: "8-13 років",
+    duration_options_minutes: [60, 90, 120],
+    base_price_uah_from: 2500,
+    tags_ua: ["квест", "тінейджери", "атмосферна вечірка"],
+    hero_image: { src: placeholder, alt: "Венздей" },
+    images: [
+      { src: placeholder, alt: "Венздей квест" },
+      { src: placeholder, alt: "Темна вечірка" },
+      { src: placeholder, alt: "Фото з Венздей" },
+    ],
+    is_featured: true,
+  },
+  {
+    slug: "harry-potter",
+    name_ua: "Гаррі Поттер",
+    short_ua: "Магічний квест зі школою чарів, завданнями та інтерактивом.",
+    description_ua:
+      "Тематика чарівної школи: розподіл на факультети, пошук артефактів, командні місії та церемонія нагородження.",
+    age_range_ua: "7-12 років",
+    duration_options_minutes: [90, 120],
+    base_price_uah_from: 2600,
+    tags_ua: ["квест", "магія", "тематична вечірка"],
+    hero_image: { src: placeholder, alt: "Гаррі Поттер" },
+    images: [
+      { src: placeholder, alt: "Магічний квест" },
+      { src: placeholder, alt: "Факультети та завдання" },
+      { src: placeholder, alt: "Свято в стилі Гаррі Поттера" },
+    ],
+  },
+  {
+    slug: "ladybug-catnoir",
+    name_ua: "Леді Баг і Супер-Кіт",
+    short_ua: "Французький вайб, суперсили, енергійні ігри та командні місії.",
+    description_ua:
+      "Герої Парижа проводять яскраву анімацію: битва добра зі злом, конкурси, танці та святковий фінал.",
+    age_range_ua: "4-9 років",
+    duration_options_minutes: [60, 90],
+    base_price_uah_from: 2200,
+    tags_ua: ["супергерої", "мультгерої", "дівчача вечірка"],
+    hero_image: { src: placeholder, alt: "Леді Баг і Супер-Кіт" },
+    images: [
+      { src: placeholder, alt: "Леді Баг програма" },
+      { src: placeholder, alt: "Супер-Кіт ігри" },
+      { src: placeholder, alt: "Фото з героями" },
+    ],
+  },
+  {
+    slug: "paw-patrol",
+    name_ua: "Щенячий патруль",
+    short_ua: "Рятувальна місія з Чейзом і Скай для активних малюків.",
+    description_ua:
+      "Рятувальна команда проводить ігрову програму: місії, прості квести, конкурси та дружній фінал.",
+    age_range_ua: "3-7 років",
+    duration_options_minutes: [45, 60, 90],
+    base_price_uah_from: 2000,
+    tags_ua: ["малюки", "рятувальна місія", "мультгерої"],
+    hero_image: { src: placeholder, alt: "Щенячий патруль" },
+    images: [
+      { src: placeholder, alt: "Чейз і Скай" },
+      { src: placeholder, alt: "Рятувальні конкурси" },
+      { src: placeholder, alt: "Свято зі Щенячим патрулем" },
+    ],
+  },
+  {
+    slug: "bumblebee-transformer",
+    name_ua: "Бамблбі (Трансформер)",
+    short_ua: "Екшен-програма з техно-тематикою та командними випробуваннями.",
+    description_ua:
+      "Бамблбі проводить динамічне свято: місії агентів, активні ігри, командні челенджі й фотосесія.",
+    age_range_ua: "6-12 років",
+    duration_options_minutes: [60, 90, 120],
+    base_price_uah_from: 2700,
+    tags_ua: ["трансформери", "екшен", "квест"],
+    hero_image: { src: placeholder, alt: "Бамблбі" },
+    images: [
+      { src: placeholder, alt: "Бамблбі програма" },
+      { src: placeholder, alt: "Екшен конкурси" },
+      { src: placeholder, alt: "Фото з трансформером" },
+    ],
+  },
+];
