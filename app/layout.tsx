@@ -19,9 +19,9 @@ export const metadata: Metadata = {
     template: `%s | ${site.brand_name_ua}`,
   },
   icons: {
-    icon: [{ url: "/images/instagram/logo.jpg", type: "image/jpeg" }],
-    shortcut: ["/images/instagram/logo.jpg"],
-    apple: [{ url: "/images/instagram/logo.jpg", type: "image/jpeg" }],
+    icon: [{ url: "/icon.png", type: "image/png" }],
+    shortcut: ["/icon.png"],
+    apple: [{ url: "/icon.png", type: "image/png" }],
   },
   description: site.seo_description_ua,
   openGraph: {
