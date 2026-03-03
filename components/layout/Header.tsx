@@ -20,14 +20,14 @@ export function Header() {
       <Container className="flex flex-col gap-3 py-2.5 md:py-3 lg:flex-row lg:items-center lg:justify-between">
         <Link
           href="/"
-          className="inline-flex items-center gap-2 text-lg font-black text-brand-800 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 md:gap-0"
+          className="inline-flex items-center gap-2 text-lg font-black text-brand-800 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-500"
         >
           <Image
             src={instagramLogoSrc}
             alt="Логотип Лабораторія свята"
             width={40}
             height={40}
-            className="h-10 w-10 rounded-full border border-brand-200 object-cover md:hidden"
+            className="h-10 w-10 rounded-full border border-brand-200 object-cover"
           />
           <span>{site.brand_name_ua}</span>
         </Link>

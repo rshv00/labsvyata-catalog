@@ -4,7 +4,11 @@ export const site = {
   phones: ["+380971234567", "+380661112233"],
   telegram_url: "https://t.me/labsvyata",
   instagram_url: "https://instagram.com/labsvyata",
-  address_text_ua: "м. Боярка, Київська область",
+  address_text_ua: "📍м.Боярка\n📍вул П.Сагайдачного,30-А",
+  address_lines_ua: ["📍м.Боярка", "📍вул П.Сагайдачного,30-А"],
+  map_url: "https://www.openstreetmap.org/?mlat=50.3346406&mlon=30.2938469#map=18/50.3346406/30.2938469",
+  map_embed_url:
+    "https://www.openstreetmap.org/export/embed.html?bbox=30.2898469%2C50.3326406%2C30.2978469%2C50.3366406&layer=mapnik&marker=50.3346406%2C30.2938469",
   working_hours_ua: "Щодня 09:00-20:00",
   service_area_ua: [
     "Боярка",
