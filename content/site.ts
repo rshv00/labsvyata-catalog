@@ -1,7 +1,7 @@
 export const site = {
   brand_name_ua: "Лабораторія свята",
   city_ua: "Боярка, Україна",
-  phones: ["+380971234567", "+380661112233"],
+  phones: ["066-371-64-01", "093-206-41-14"],
   telegram_url: "https://t.me/labsvyata",
   instagram_url: "https://instagram.com/labsvyata",
   address_text_ua: "м. Боярка, вул. П. Сагайдачного, 30-А",
