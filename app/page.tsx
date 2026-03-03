@@ -18,19 +18,19 @@ export default function HomePage() {
   return (
     <>
       <section className="border-b border-brand-100 bg-gradient-to-br from-white via-brand-50 to-brand-100">
-        <Container className="py-14 md:py-20">
+        <Container className="py-10 md:py-20">
           <div className="max-w-3xl space-y-6">
             <p className="inline-flex rounded-full bg-white px-4 py-1 text-sm font-semibold text-brand-800 shadow-soft">
               {site.city_ua}
             </p>
-            <h1 className="text-4xl font-black leading-tight text-slate-900 md:text-5xl">{site.brand_name_ua}</h1>
+            <h1 className="text-3xl font-black leading-tight text-slate-900 md:text-5xl">{site.brand_name_ua}</h1>
             <p className="text-base leading-relaxed text-slate-700 md:text-lg">{site.slogan_ua}</p>
             <ContactCtas />
           </div>
         </Container>
       </section>
 
-      <Container className="space-y-14 py-12">
+      <Container className="space-y-10 py-10 md:space-y-14 md:py-12">
         <section>
           <div className="mb-5 flex items-end justify-between gap-4">
             <h2 className="text-2xl font-black text-slate-900">Популярні персонажі</h2>

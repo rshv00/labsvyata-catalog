@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import type { Character } from "@/content/types";
 import { formatMinutes } from "@/lib/format";
+import { resolveCatalogImage } from "@/lib/instagram";
 import { PriceBadge } from "@/components/ui/PriceBadge";
 import { TagChips } from "@/components/ui/TagChips";
 
@@ -17,7 +18,7 @@ export function CharacterCard({ character }: CharacterCardProps) {
       <Link href={`/characters/${character.slug}`} className="block focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-500">
         <div className="relative aspect-[4/3]">
           <Image
-            src={character.hero_image.src}
+            src={resolveCatalogImage(character.hero_image.src, `${character.slug}-hero`)}
             alt={character.hero_image.alt}
             fill
             sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
@@ -25,7 +26,7 @@ export function CharacterCard({ character }: CharacterCardProps) {
           />
         </div>
         <div className="space-y-3 p-4">
-          <div className="flex items-start justify-between gap-3">
+          <div className="flex flex-col items-start gap-2 sm:flex-row sm:justify-between sm:gap-3">
             <h3 className="text-lg font-bold text-slate-900">{character.name_ua}</h3>
             <PriceBadge price={character.base_price_uah_from} />
           </div>

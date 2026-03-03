@@ -1,8 +1,10 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { navItems, site } from "@/content/site";
+import { instagramLogoSrc } from "@/lib/instagram";
 import { Container } from "./Container";
 
 function isActivePath(current: string, href: string): boolean {
@@ -15,12 +17,22 @@ export function Header() {
 
   return (
     <header className="sticky top-0 z-40 border-b border-brand-100 bg-white/95 backdrop-blur">
-      <Container className="flex flex-col gap-3 py-3 lg:flex-row lg:items-center lg:justify-between">
-        <Link href="/" className="text-lg font-black text-brand-800 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-500">
-          {site.brand_name_ua}
+      <Container className="flex flex-col gap-3 py-2.5 md:py-3 lg:flex-row lg:items-center lg:justify-between">
+        <Link
+          href="/"
+          className="inline-flex items-center gap-2 text-lg font-black text-brand-800 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 md:gap-0"
+        >
+          <Image
+            src={instagramLogoSrc}
+            alt="Логотип Лабораторія свята"
+            width={40}
+            height={40}
+            className="h-10 w-10 rounded-full border border-brand-200 object-cover md:hidden"
+          />
+          <span>{site.brand_name_ua}</span>
         </Link>
         <nav aria-label="Головна навігація">
-          <ul className="flex flex-wrap gap-2 text-sm font-medium sm:gap-3">
+          <ul className="flex gap-2 overflow-x-auto whitespace-nowrap pb-1 text-sm font-medium [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden sm:gap-3 md:flex-wrap md:overflow-visible md:whitespace-normal md:pb-0">
             {navItems.map((item) => {
               const active = isActivePath(pathname, item.href);
               return (

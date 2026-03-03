@@ -4,6 +4,7 @@ import "./globals.css";
 import { site } from "@/content/site";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
+import { MobileQuickActions } from "@/components/layout/MobileQuickActions";
 
 const exo = Exo_2({
   subsets: ["latin", "cyrillic"],
@@ -31,8 +32,9 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
     <html lang="uk" className={exo.variable}>
       <body className="font-[var(--font-exo)] antialiased">
         <Header />
-        <main>{children}</main>
+        <main className="pb-24 md:pb-0">{children}</main>
         <Footer />
+        <MobileQuickActions />
       </body>
     </html>
   );

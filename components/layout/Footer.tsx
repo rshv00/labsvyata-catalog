@@ -1,5 +1,7 @@
+import Image from "next/image";
 import { site } from "@/content/site";
 import { formatPhoneHref } from "@/lib/format";
+import { instagramLogoSrc } from "@/lib/instagram";
 import { Container } from "./Container";
 
 export function Footer() {
@@ -7,9 +9,20 @@ export function Footer() {
 
   return (
     <footer className="mt-16 border-t border-brand-100 bg-brand-50">
-      <Container className="grid gap-8 py-10 md:grid-cols-3">
+      <Container className="grid gap-8 py-8 md:grid-cols-3 md:py-10">
         <div>
-          <h2 className="text-lg font-black text-brand-900">{site.brand_name_ua}</h2>
+          <h2 className="text-lg font-black text-brand-900">
+            <span className="inline-flex items-center gap-2 md:gap-0">
+              <Image
+                src={instagramLogoSrc}
+                alt="Логотип Лабораторія свята"
+                width={36}
+                height={36}
+                className="h-9 w-9 rounded-full border border-brand-200 object-cover md:hidden"
+              />
+              <span>{site.brand_name_ua}</span>
+            </span>
+          </h2>
           <p className="mt-2 text-sm text-slate-700">{site.city_ua}</p>
           <p className="mt-2 text-sm text-slate-700">{site.working_hours_ua}</p>
         </div>
@@ -55,7 +68,7 @@ export function Footer() {
               href={site.telegram_url}
               target="_blank"
               rel="noreferrer"
-              className="rounded-xl bg-brand-600 px-4 py-2 text-center text-sm font-semibold text-white transition hover:bg-brand-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-500"
+              className="rounded-xl bg-brand-600 px-4 py-2 text-center text-sm font-semibold text-white transition hover:bg-brand-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 md:w-auto"
             >
               Написати в Telegram
             </a>
@@ -63,13 +76,13 @@ export function Footer() {
               href={site.instagram_url}
               target="_blank"
               rel="noreferrer"
-              className="rounded-xl border border-brand-300 bg-white px-4 py-2 text-center text-sm font-semibold text-brand-800 transition hover:bg-brand-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-500"
+              className="rounded-xl border border-brand-300 bg-white px-4 py-2 text-center text-sm font-semibold text-brand-800 transition hover:bg-brand-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 md:w-auto"
             >
               Instagram
             </a>
             <a
               href={formatPhoneHref(mainPhone)}
-              className="rounded-xl border border-brand-300 bg-white px-4 py-2 text-center text-sm font-semibold text-brand-800 transition hover:bg-brand-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-500"
+              className="rounded-xl border border-brand-300 bg-white px-4 py-2 text-center text-sm font-semibold text-brand-800 transition hover:bg-brand-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 md:w-auto"
             >
               Подзвонити
             </a>

@@ -12,6 +12,7 @@ import { programs } from "@/content/programs";
 import { site } from "@/content/site";
 import { getRelatedProgramsByTags } from "@/lib/catalog";
 import { formatMinutes } from "@/lib/format";
+import { resolveCatalogImage, resolveCatalogImages } from "@/lib/instagram";
 
 type ProgramPageProps = {
   params: {
@@ -52,6 +53,13 @@ export default function ProgramDetailPage({ params }: ProgramPageProps) {
   }
 
   const related = getRelatedProgramsByTags(programs, item, 3);
+  const galleryImages = [
+    {
+      ...item.hero_image,
+      src: resolveCatalogImage(item.hero_image.src, `${item.slug}-hero`),
+    },
+    ...resolveCatalogImages(item.images, item.slug),
+  ];
 
   return (
     <Container className="py-10">
@@ -65,7 +73,7 @@ export default function ProgramDetailPage({ params }: ProgramPageProps) {
 
       <section className="grid gap-6 lg:grid-cols-[1.1fr_0.9fr]">
         <div>
-          <Gallery images={[item.hero_image, ...item.images]} />
+          <Gallery images={galleryImages} />
         </div>
         <div className="space-y-4 rounded-2xl border border-slate-200 bg-white p-6 shadow-soft">
           <h1 className="text-3xl font-black text-slate-900">{item.name_ua}</h1>
