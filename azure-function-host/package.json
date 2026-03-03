@@ -1,0 +1,13 @@
+{
+  "name": "labsvyata-catalog-azure-function-host",
+  "version": "1.0.0",
+  "private": true,
+  "main": "src/functions/staticCatalog.js",
+  "type": "commonjs",
+  "engines": {
+    "node": ">=20"
+  },
+  "dependencies": {
+    "@azure/functions": "4.8.0"
+  }
+}
