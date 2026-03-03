@@ -23,18 +23,22 @@ export function Footer() {
               <span>{site.brand_name_ua}</span>
             </span>
           </h2>
-          <p className="mt-2 text-sm text-slate-700">{site.city_ua}</p>
-          <p className="mt-2 text-sm text-slate-700">{site.working_hours_ua}</p>
-          <div className="mt-3 space-y-1 text-sm text-slate-700">
-            {site.address_lines_ua?.map((line) => (
-              <p key={line}>{line}</p>
-            ))}
+          <div className="mt-3 space-y-3 text-sm text-slate-700">
+            <div className="space-y-1">
+              <p className="font-semibold text-slate-900">Адреса</p>
+              {site.address_lines_ua?.map((line) => (
+                <p key={line}>{line}</p>
+              ))}
+            </div>
+            <p>
+              <span className="font-semibold text-slate-900">Графік:</span> {site.working_hours_ua}
+            </p>
           </div>
           <a
             href={site.map_url}
             target="_blank"
             rel="noreferrer"
-            className="mt-3 inline-flex text-sm font-semibold text-brand-700 hover:text-brand-800 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-500"
+            className="mt-2 inline-flex text-sm font-semibold text-brand-700 hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-500"
           >
             Відкрити на OpenStreetMap
           </a>

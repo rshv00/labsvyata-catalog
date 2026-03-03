@@ -18,6 +18,11 @@ export const metadata: Metadata = {
     default: `${site.brand_name_ua} | Дитячі свята у ${site.city_ua}`,
     template: `%s | ${site.brand_name_ua}`,
   },
+  icons: {
+    icon: [{ url: "/images/instagram/logo.jpg", type: "image/jpeg" }],
+    shortcut: ["/images/instagram/logo.jpg"],
+    apple: [{ url: "/images/instagram/logo.jpg", type: "image/jpeg" }],
+  },
   description: site.seo_description_ua,
   openGraph: {
     title: `${site.brand_name_ua} | Дитячі свята`,
