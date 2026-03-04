@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
@@ -29,7 +29,9 @@ function isActivePath(current: string, href: string): boolean {
 
 export function Header() {
   const pathname = usePathname();
+  const headerRef = useRef<HTMLElement>(null);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [menuTop, setMenuTop] = useState(0);
 
   useEffect(() => {
     setIsMobileMenuOpen(false);
@@ -50,14 +52,34 @@ export function Header() {
     document.body.style.overflow = "hidden";
     document.addEventListener("keydown", onKeyDown);
 
+      return () => {
+        document.body.style.overflow = previousOverflow;
+        document.removeEventListener("keydown", onKeyDown);
+      };
+  }, [isMobileMenuOpen]);
+
+  useEffect(() => {
+    if (!isMobileMenuOpen) {
+      return;
+    }
+
+    const updateMenuTop = () => {
+      const top = headerRef.current?.getBoundingClientRect().bottom ?? 0;
+      setMenuTop(top);
+    };
+
+    updateMenuTop();
+    window.addEventListener("resize", updateMenuTop);
+    window.addEventListener("scroll", updateMenuTop, { passive: true });
+
     return () => {
-      document.body.style.overflow = previousOverflow;
-      document.removeEventListener("keydown", onKeyDown);
+      window.removeEventListener("resize", updateMenuTop);
+      window.removeEventListener("scroll", updateMenuTop);
     };
   }, [isMobileMenuOpen]);
 
   return (
-    <header className="sticky top-0 z-40 border-b border-brand-100 bg-white/95 backdrop-blur">
+    <header ref={headerRef} className="sticky top-0 z-40 border-b border-brand-100 bg-white/95 backdrop-blur">
       <Container className="py-2.5 md:py-3">
         <div className="flex items-center justify-between gap-3">
           <Link
@@ -78,10 +100,24 @@ export function Header() {
             type="button"
             aria-label="Відкрити меню"
             aria-expanded={isMobileMenuOpen}
-            onClick={() => setIsMobileMenuOpen(true)}
-            className="inline-flex h-10 w-10 items-center justify-center rounded-xl border border-brand-200 bg-white text-2xl leading-none text-brand-800 shadow-soft transition hover:bg-brand-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 md:hidden"
+            onClick={() => setIsMobileMenuOpen((prev) => !prev)}
+            className="relative inline-flex h-10 w-10 items-center justify-center rounded-xl border border-brand-200 bg-white text-brand-800 shadow-soft transition hover:bg-brand-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 md:hidden"
           >
-            ☰
+            <span
+              className={`absolute h-0.5 w-5 bg-current transition-transform duration-300 ${
+                isMobileMenuOpen ? "translate-y-0 rotate-45" : "-translate-y-[6px]"
+              }`}
+            />
+            <span
+              className={`absolute h-0.5 w-5 bg-current transition-opacity duration-300 ${
+                isMobileMenuOpen ? "opacity-0" : "opacity-100"
+              }`}
+            />
+            <span
+              className={`absolute h-0.5 w-5 bg-current transition-transform duration-300 ${
+                isMobileMenuOpen ? "translate-y-0 -rotate-45" : "translate-y-[6px]"
+              }`}
+            />
           </button>
         </div>
 
@@ -108,28 +144,9 @@ export function Header() {
       </Container>
 
       {isMobileMenuOpen ? (
-        <div className="fixed inset-0 z-50 md:hidden">
-          <button
-            type="button"
-            aria-label="Закрити меню"
-            className="absolute inset-0 bg-slate-900/40"
-            onClick={() => setIsMobileMenuOpen(false)}
-          />
-          <aside className="absolute right-0 top-0 z-10 h-full w-[min(86vw,22rem)] border-l border-brand-100 bg-white p-5 shadow-2xl">
-            <div className="flex items-center justify-between">
-              <p className="text-lg font-black text-slate-900">Меню</p>
-              <button
-                type="button"
-                aria-label="Закрити меню"
-                onClick={() => setIsMobileMenuOpen(false)}
-                className="inline-flex h-10 w-10 items-center justify-center rounded-xl border border-brand-200 bg-white text-xl leading-none text-brand-800 transition hover:bg-brand-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-500"
-              >
-                ✕
-              </button>
-            </div>
-
-            <nav aria-label="Мобільна навігація" className="mt-5">
-              <ul className="space-y-2">
+        <div className="fixed inset-x-0 bottom-0 z-50 border-t border-brand-100 bg-brand-50/95 backdrop-blur md:hidden" style={{ top: `${menuTop}px` }}>
+          <nav aria-label="Мобільна навігація" className="h-full overflow-y-auto px-4 py-5">
+            <ul className="space-y-2">
                 {navItems.map((item) => {
                   const active = isActivePath(pathname, item.href);
                   return (
@@ -137,8 +154,8 @@ export function Header() {
                       <Link
                         href={item.href}
                         onClick={() => setIsMobileMenuOpen(false)}
-                        className={`block rounded-xl px-4 py-3 text-base font-semibold transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 ${
-                          active ? "bg-brand-600 text-white" : "text-slate-800 hover:bg-brand-50"
+                        className={`block rounded-xl px-4 py-3 text-base font-semibold uppercase tracking-wide transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 ${
+                          active ? "bg-brand-600 text-white" : "text-slate-900 hover:bg-white"
                         }`}
                         aria-current={active ? "page" : undefined}
                       >
@@ -147,9 +164,8 @@ export function Header() {
                     </li>
                   );
                 })}
-              </ul>
-            </nav>
-          </aside>
+            </ul>
+          </nav>
         </div>
       ) : null}
     </header>
