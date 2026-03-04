@@ -63,7 +63,15 @@ export function Footer() {
                 target="_blank"
                 rel="noreferrer"
               >
-                Telegram
+                Telegram ({site.telegram_phone_display_ua})
+              </a>
+            </li>
+            <li>
+              <a
+                className="hover:text-brand-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-500"
+                href={site.viber_url}
+              >
+                Viber ({site.viber_phone_display_ua})
               </a>
             </li>
             <li>
@@ -87,7 +95,13 @@ export function Footer() {
               rel="noreferrer"
               className="rounded-xl bg-brand-600 px-4 py-2 text-center text-sm font-semibold text-white transition hover:bg-brand-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 md:w-auto"
             >
-              Написати в Telegram
+              Telegram {site.telegram_phone_display_ua}
+            </a>
+            <a
+              href={site.viber_url}
+              className="rounded-xl border border-brand-300 bg-white px-4 py-2 text-center text-sm font-semibold text-brand-800 transition hover:bg-brand-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 md:w-auto"
+            >
+              Viber
             </a>
             <a
               href={site.instagram_url}

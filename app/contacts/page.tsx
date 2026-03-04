@@ -42,7 +42,12 @@ export default function ContactsPage() {
           <ul className="mt-3 space-y-2 text-sm text-slate-700">
             <li>
               <a href={site.telegram_url} target="_blank" rel="noreferrer" className="font-medium text-brand-700 hover:text-brand-800">
-                Telegram
+                Telegram ({site.telegram_phone_display_ua})
+              </a>
+            </li>
+            <li>
+              <a href={site.viber_url} className="font-medium text-brand-700 hover:text-brand-800">
+                Viber ({site.viber_phone_display_ua})
               </a>
             </li>
             <li>
