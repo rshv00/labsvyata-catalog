@@ -62,6 +62,7 @@ export type Addon = {
   description_ua: string;
   price_uah_from: number;
   tags_ua: string[];
+  notes_ua?: string[];
 };
 
 export type Pricing = { packages: Package[]; package_groups?: PackageGroup[]; addons: Addon[] };

@@ -3,7 +3,7 @@ import { Container } from "@/components/layout/Container";
 import { Breadcrumbs } from "@/components/ui/Breadcrumbs";
 import { pricing } from "@/content/pricing";
 import type { Package, PackageGroup } from "@/content/types";
-import { formatCurrencyUah, formatPriceUah } from "@/lib/format";
+import { formatCurrencyUah } from "@/lib/format";
 import { getCanonicalUrl } from "@/lib/seo";
 
 export const metadata: Metadata = {
@@ -175,20 +175,24 @@ export default function PricesPage() {
         <div className="mt-4 grid gap-4 md:grid-cols-2">
           {pricing.addons.map((addon) => (
             <article key={addon.slug} className="rounded-2xl border border-slate-200 bg-white p-4 shadow-soft">
-              <div className="flex items-start justify-between gap-3">
+              <div className="space-y-1">
                 <h3 className="text-base font-bold text-slate-900">{addon.name_ua}</h3>
-                <span className="whitespace-nowrap rounded-full bg-brand-100 px-3 py-1 text-sm font-semibold text-brand-800">
-                  {formatPriceUah(addon.price_uah_from)}
-                </span>
+                {addon.slug === "guest-gifts" || addon.name_ua === "Подарунки гостям" ? (
+                  <p className="text-sm italic font-semibold text-brand-800">50 грн за 1 людину</p>
+                ) : (
+                  <p className="text-sm font-semibold text-brand-800">{addon.price_uah_from} грн</p>
+                )}
               </div>
               <p className="mt-2 text-sm text-slate-700">{addon.description_ua}</p>
-              <ul className="mt-2 flex flex-wrap gap-2">
-                {addon.tags_ua.map((tag) => (
-                  <li key={tag} className="rounded-full border border-brand-200 bg-brand-50 px-2.5 py-1 text-xs text-brand-800">
-                    {tag}
-                  </li>
-                ))}
-              </ul>
+              {addon.notes_ua?.length ? (
+                <ul className="mt-2 space-y-1">
+                  {addon.notes_ua.map((note) => (
+                    <li key={note} className="text-sm italic text-slate-600">
+                      {note}
+                    </li>
+                  ))}
+                </ul>
+              ) : null}
             </article>
           ))}
         </div>
