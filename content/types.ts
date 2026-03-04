@@ -20,6 +20,7 @@ export type Program = {
   short_ua: string;
   description_ua: string;
   recommended_ages_ua: string;
+  default_character_slugs?: string[];
   duration_minutes: number;
   price_uah_from: number;
   tags_ua: string[];

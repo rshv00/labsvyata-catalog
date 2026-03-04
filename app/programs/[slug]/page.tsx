@@ -8,6 +8,7 @@ import { TagChips } from "@/components/ui/TagChips";
 import { ContactCtas } from "@/components/sections/ContactCtas";
 import { HowToOrder } from "@/components/sections/HowToOrder";
 import { ProgramCard } from "@/components/cards/ProgramCard";
+import { characters } from "@/content/characters";
 import { programs } from "@/content/programs";
 import { getRelatedProgramsByTags } from "@/lib/catalog";
 import { resolveCatalogImage, resolveCatalogImages } from "@/lib/instagram";
@@ -63,6 +64,10 @@ export default function ProgramDetailPage({ params }: ProgramPageProps) {
     notFound();
   }
 
+  const defaultCharacters = (item.default_character_slugs ?? [])
+    .map((characterSlug) => characters.find((character) => character.slug === characterSlug))
+    .filter((character): character is (typeof characters)[number] => Boolean(character));
+
   const related = getRelatedProgramsByTags(programs, item, 3);
   const galleryImages = [
     {
@@ -92,6 +97,26 @@ export default function ProgramDetailPage({ params }: ProgramPageProps) {
           <div className="flex flex-wrap items-center gap-3">
             <span className="rounded-full bg-slate-100 px-3 py-1 text-sm text-slate-700">{item.recommended_ages_ua}</span>
           </div>
+
+          {defaultCharacters.length > 0 ? (
+            <div className="rounded-2xl border border-slate-200 bg-slate-50 p-4">
+              <p className="text-sm text-slate-700">
+                Персонажі за замовчуванням:{" "}
+                {defaultCharacters.map((character, index) => (
+                  <span key={character.slug}>
+                    {index > 0 ? ", " : null}
+                    <Link
+                      href={`/characters/${character.slug}/`}
+                      className="font-semibold text-brand-700 underline-offset-2 hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-500"
+                    >
+                      {character.name_ua}
+                    </Link>
+                  </span>
+                ))}
+              </p>
+              <p className="mt-1 text-sm italic text-slate-600">*можна обрати іншого персонажа для цієї програми</p>
+            </div>
+          ) : null}
 
           <div>
             <h2 className="text-sm font-bold uppercase tracking-wide text-slate-700">Що входить</h2>
