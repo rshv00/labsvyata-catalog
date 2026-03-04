@@ -19,7 +19,7 @@ export function ContactCtas({ compact = false }: ContactCtasProps) {
         rel="noreferrer"
         className={`${buttonClasses} bg-brand-600 text-white transition hover:bg-brand-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-500`}
       >
-        Telegram {site.telegram_phone_display_ua}
+        Telegram
       </a>
       <a
         href={site.viber_url}

@@ -63,7 +63,7 @@ export function Footer() {
                 target="_blank"
                 rel="noreferrer"
               >
-                Telegram ({site.telegram_phone_display_ua})
+                Telegram
               </a>
             </li>
             <li>
@@ -95,7 +95,7 @@ export function Footer() {
               rel="noreferrer"
               className="rounded-xl bg-brand-600 px-4 py-2 text-center text-sm font-semibold text-white transition hover:bg-brand-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 md:w-auto"
             >
-              Telegram {site.telegram_phone_display_ua}
+              Telegram
             </a>
             <a
               href={site.viber_url}
