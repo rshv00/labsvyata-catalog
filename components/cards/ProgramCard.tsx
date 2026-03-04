@@ -3,7 +3,6 @@ import Link from "next/link";
 import type { Program } from "@/content/types";
 import { formatMinutes } from "@/lib/format";
 import { resolveCatalogImage } from "@/lib/instagram";
-import { PriceBadge } from "@/components/ui/PriceBadge";
 import { TagChips } from "@/components/ui/TagChips";
 
 type ProgramCardProps = {
@@ -24,10 +23,7 @@ export function ProgramCard({ program }: ProgramCardProps) {
           />
         </div>
         <div className="space-y-3 p-4">
-          <div className="flex flex-col items-start gap-2 sm:flex-row sm:justify-between sm:gap-3">
-            <h3 className="text-lg font-bold text-slate-900">{program.name_ua}</h3>
-            <PriceBadge price={program.price_uah_from} />
-          </div>
+          <h3 className="text-lg font-bold text-slate-900">{program.name_ua}</h3>
           <p className="text-sm text-slate-700">{program.short_ua}</p>
           <ul className="flex flex-wrap gap-3 text-xs text-slate-600">
             <li>{program.recommended_ages_ua}</li>

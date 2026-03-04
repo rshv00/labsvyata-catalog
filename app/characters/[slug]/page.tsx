@@ -1,10 +1,10 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import { notFound } from "next/navigation";
 import { Container } from "@/components/layout/Container";
 import { Breadcrumbs } from "@/components/ui/Breadcrumbs";
 import { Gallery } from "@/components/ui/Gallery";
 import { TagChips } from "@/components/ui/TagChips";
-import { PriceBadge } from "@/components/ui/PriceBadge";
 import { ContactCtas } from "@/components/sections/ContactCtas";
 import { HowToOrder } from "@/components/sections/HowToOrder";
 import { CharacterCard } from "@/components/cards/CharacterCard";
@@ -34,8 +34,7 @@ export function generateMetadata({ params }: CharacterPageProps): Metadata {
   }
 
   const durationText = item.duration_options_minutes.map((duration) => `${duration} хв`).join(", ");
-  const priceText = new Intl.NumberFormat("uk-UA").format(item.base_price_uah_from);
-  const description = `${item.short_ua} Вік: ${item.age_range_ua}. Тривалість: ${durationText}. Ціна від ${priceText} грн.`;
+  const description = `${item.short_ua} Вік: ${item.age_range_ua}. Тривалість: ${durationText}.`;
   const canonical = getCanonicalUrl(`/characters/${item.slug}`);
 
   return {
@@ -80,7 +79,7 @@ export default function CharacterDetailPage({ params }: CharacterPageProps) {
       <Breadcrumbs
         items={[
           { href: "/", label: "Головна" },
-          { href: "/characters", label: "Персонажі" },
+          { href: "/characters/", label: "Персонажі" },
           { label: item.name_ua },
         ]}
       />
@@ -92,10 +91,7 @@ export default function CharacterDetailPage({ params }: CharacterPageProps) {
         <div className="space-y-4 rounded-2xl border border-slate-200 bg-white p-6 shadow-soft">
           <h1 className="text-3xl font-black text-slate-900">{item.name_ua}</h1>
           <p className="text-sm leading-relaxed text-slate-700">{item.description_ua}</p>
-          <div className="flex flex-wrap items-center gap-3">
-            <PriceBadge price={item.base_price_uah_from} />
-            <span className="rounded-full bg-slate-100 px-3 py-1 text-sm text-slate-700">{item.age_range_ua}</span>
-          </div>
+          <span className="inline-flex rounded-full bg-slate-100 px-3 py-1 text-sm text-slate-700">{item.age_range_ua}</span>
 
           <div>
             <h2 className="text-sm font-bold uppercase tracking-wide text-slate-700">Варіанти тривалості</h2>
@@ -111,6 +107,16 @@ export default function CharacterDetailPage({ params }: CharacterPageProps) {
           <div>
             <h2 className="text-sm font-bold uppercase tracking-wide text-slate-700">Теги</h2>
             <TagChips tags={item.tags_ua} className="mt-2" />
+          </div>
+
+          <div className="space-y-3 rounded-2xl border border-brand-100 bg-brand-50 p-4">
+            <p className="text-sm text-slate-700">Вартість залежить від пакету та формату. Перейдіть до сторінки «Ціни».</p>
+            <Link
+              href="/prices/"
+              className="inline-flex items-center justify-center rounded-xl bg-brand-600 px-4 py-2 text-sm font-semibold text-white transition hover:bg-brand-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-500"
+            >
+              Перейти до цін
+            </Link>
           </div>
 
           <ContactCtas compact />

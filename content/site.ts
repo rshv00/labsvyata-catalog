@@ -32,9 +32,9 @@ export const site = {
 
 export const navItems = [
   { href: "/", label: "Головна" },
-  { href: "/characters/", label: "Персонажі" },
   { href: "/programs/", label: "Програми" },
+  { href: "/characters/", label: "Персонажі" },
   { href: "/prices/", label: "Ціни" },
-  { href: "/about/", label: "Про нас" },
   { href: "/contacts/", label: "Контакти" },
+  { href: "/about/", label: "Про нас" },
 ];
