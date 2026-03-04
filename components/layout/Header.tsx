@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
@@ -29,9 +29,7 @@ function isActivePath(current: string, href: string): boolean {
 
 export function Header() {
   const pathname = usePathname();
-  const headerRef = useRef<HTMLElement>(null);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const [menuTop, setMenuTop] = useState(0);
 
   useEffect(() => {
     setIsMobileMenuOpen(false);
@@ -52,34 +50,14 @@ export function Header() {
     document.body.style.overflow = "hidden";
     document.addEventListener("keydown", onKeyDown);
 
-      return () => {
-        document.body.style.overflow = previousOverflow;
-        document.removeEventListener("keydown", onKeyDown);
-      };
-  }, [isMobileMenuOpen]);
-
-  useEffect(() => {
-    if (!isMobileMenuOpen) {
-      return;
-    }
-
-    const updateMenuTop = () => {
-      const top = headerRef.current?.getBoundingClientRect().bottom ?? 0;
-      setMenuTop(top);
-    };
-
-    updateMenuTop();
-    window.addEventListener("resize", updateMenuTop);
-    window.addEventListener("scroll", updateMenuTop, { passive: true });
-
     return () => {
-      window.removeEventListener("resize", updateMenuTop);
-      window.removeEventListener("scroll", updateMenuTop);
+      document.body.style.overflow = previousOverflow;
+      document.removeEventListener("keydown", onKeyDown);
     };
   }, [isMobileMenuOpen]);
 
   return (
-    <header ref={headerRef} className="sticky top-0 z-40 border-b border-brand-100 bg-white/95 backdrop-blur">
+    <header className="sticky top-0 z-[70] border-b border-brand-100 bg-white/95 backdrop-blur">
       <Container className="py-2.5 md:py-3">
         <div className="flex items-center justify-between gap-3">
           <Link
@@ -144,26 +122,26 @@ export function Header() {
       </Container>
 
       {isMobileMenuOpen ? (
-        <div className="fixed inset-x-0 bottom-0 z-50 border-t border-brand-100 bg-brand-50/95 backdrop-blur md:hidden" style={{ top: `${menuTop}px` }}>
-          <nav aria-label="Мобільна навігація" className="h-full overflow-y-auto px-4 py-5">
+        <div className="absolute inset-x-0 top-full z-[80] border-t border-brand-100 bg-brand-50/95 backdrop-blur md:hidden">
+          <nav aria-label="Мобільна навігація" className="max-h-[calc(100dvh-4.5rem)] overflow-y-auto px-4 py-5">
             <ul className="space-y-2">
-                {navItems.map((item) => {
-                  const active = isActivePath(pathname, item.href);
-                  return (
-                    <li key={`mobile-${item.href}`}>
-                      <Link
-                        href={item.href}
-                        onClick={() => setIsMobileMenuOpen(false)}
-                        className={`block rounded-xl px-4 py-3 text-base font-semibold uppercase tracking-wide transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 ${
-                          active ? "bg-brand-600 text-white" : "text-slate-900 hover:bg-white"
-                        }`}
-                        aria-current={active ? "page" : undefined}
-                      >
-                        {item.label}
-                      </Link>
-                    </li>
-                  );
-                })}
+              {navItems.map((item) => {
+                const active = isActivePath(pathname, item.href);
+                return (
+                  <li key={`mobile-${item.href}`}>
+                    <Link
+                      href={item.href}
+                      onClick={() => setIsMobileMenuOpen(false)}
+                      className={`block rounded-xl px-4 py-3 text-base font-semibold uppercase tracking-wide transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 ${
+                        active ? "bg-brand-600 text-white" : "text-slate-900 hover:bg-white"
+                      }`}
+                      aria-current={active ? "page" : undefined}
+                    >
+                      {item.label}
+                    </Link>
+                  </li>
+                );
+              })}
             </ul>
           </nav>
         </div>
