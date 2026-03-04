@@ -171,7 +171,7 @@ export default function PricesPage() {
       </section>
 
       <section className="mt-10">
-        <h2 className="text-2xl font-black text-slate-900">Додаткові опції</h2>
+        <h2 className="text-2xl font-black text-slate-900">Чи потрібні додаткові послуги?</h2>
         <div className="mt-4 grid gap-4 md:grid-cols-2">
           {pricing.addons.map((addon) => (
             <article key={addon.slug} className="rounded-2xl border border-slate-200 bg-white p-4 shadow-soft">
