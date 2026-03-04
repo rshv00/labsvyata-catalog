@@ -15,7 +15,7 @@ export const metadata: Metadata = {
   },
   openGraph: {
     title: `Програми для свят у Боярці | ${site.brand_name_ua}`,
-    description: "Каталог програм для дитячих свят у Боярці з фільтрами за віком, тривалістю та ціною.",
+    description: "Каталог програм для дитячих свят у Боярці з фільтрами за віком і тематикою.",
     url: getCanonicalUrl("/programs"),
     locale: "uk_UA",
     type: "website",

@@ -1,7 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
 import type { Program } from "@/content/types";
-import { formatMinutes } from "@/lib/format";
 import { resolveCatalogImage } from "@/lib/instagram";
 import { TagChips } from "@/components/ui/TagChips";
 
@@ -25,10 +24,7 @@ export function ProgramCard({ program }: ProgramCardProps) {
         <div className="space-y-3 p-4">
           <h3 className="text-lg font-bold text-slate-900">{program.name_ua}</h3>
           <p className="text-sm text-slate-700">{program.short_ua}</p>
-          <ul className="flex flex-wrap gap-3 text-xs text-slate-600">
-            <li>{program.recommended_ages_ua}</li>
-            <li>{formatMinutes(program.duration_minutes)}</li>
-          </ul>
+          <p className="text-xs text-slate-600">{program.recommended_ages_ua}</p>
           <TagChips tags={program.tags_ua.slice(0, 3)} />
         </div>
       </Link>

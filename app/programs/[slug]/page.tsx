@@ -10,7 +10,6 @@ import { HowToOrder } from "@/components/sections/HowToOrder";
 import { ProgramCard } from "@/components/cards/ProgramCard";
 import { programs } from "@/content/programs";
 import { getRelatedProgramsByTags } from "@/lib/catalog";
-import { formatMinutes } from "@/lib/format";
 import { resolveCatalogImage, resolveCatalogImages } from "@/lib/instagram";
 import { getCanonicalUrl } from "@/lib/seo";
 
@@ -33,7 +32,7 @@ export function generateMetadata({ params }: ProgramPageProps): Metadata {
     };
   }
 
-  const description = `${item.short_ua} Вік: ${item.recommended_ages_ua}. Тривалість: ${item.duration_minutes} хв.`;
+  const description = `${item.short_ua} Вік: ${item.recommended_ages_ua}.`;
   const canonical = getCanonicalUrl(`/programs/${item.slug}`);
 
   return {
@@ -92,7 +91,6 @@ export default function ProgramDetailPage({ params }: ProgramPageProps) {
           <p className="text-sm leading-relaxed text-slate-700">{item.description_ua}</p>
           <div className="flex flex-wrap items-center gap-3">
             <span className="rounded-full bg-slate-100 px-3 py-1 text-sm text-slate-700">{item.recommended_ages_ua}</span>
-            <span className="rounded-full bg-slate-100 px-3 py-1 text-sm text-slate-700">{formatMinutes(item.duration_minutes)}</span>
           </div>
 
           <div>
