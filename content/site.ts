@@ -1,4 +1,6 @@
 export const site = {
+  site_url: "https://labsvyata.azurewebsites.net",
+  google_site_verification: "",
   brand_name_ua: "Лабораторія свята",
   city_ua: "Боярка, Україна",
   phones: ["066-371-64-01", "093-206-41-14"],
@@ -7,6 +9,7 @@ export const site = {
   viber_url: "viber://chat?number=%2B380663716401",
   instagram_url: "https://instagram.com/labsvyata",
   address_text_ua: "м. Боярка, вул. П. Сагайдачного, 30-А",
+  address_street_ua: "вул. П. Сагайдачного, 30-А",
   address_lines_ua: ["м. Боярка", "вул. П. Сагайдачного, 30-А"],
   map_url: "https://www.openstreetmap.org/?mlat=50.3346406&mlon=30.2938469#map=18/50.3346406/30.2938469",
   map_embed_url:

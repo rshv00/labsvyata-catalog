@@ -9,10 +9,10 @@ import { ContactCtas } from "@/components/sections/ContactCtas";
 import { HowToOrder } from "@/components/sections/HowToOrder";
 import { ProgramCard } from "@/components/cards/ProgramCard";
 import { programs } from "@/content/programs";
-import { site } from "@/content/site";
 import { getRelatedProgramsByTags } from "@/lib/catalog";
 import { formatCurrencyUah, formatMinutes } from "@/lib/format";
 import { resolveCatalogImage, resolveCatalogImages } from "@/lib/instagram";
+import { getCanonicalUrl } from "@/lib/seo";
 
 type ProgramPageProps = {
   params: {
@@ -33,14 +33,27 @@ export function generateMetadata({ params }: ProgramPageProps): Metadata {
     };
   }
 
+  const priceText = new Intl.NumberFormat("uk-UA").format(item.price_uah_from);
+  const description = `${item.short_ua} Тривалість: ${item.duration_minutes} хв. Ціна від ${priceText} грн.`;
+  const canonical = getCanonicalUrl(`/programs/${item.slug}`);
+
   return {
-    title: item.name_ua,
-    description: `${item.short_ua} ${site.brand_name_ua}, ${site.city_ua}.`,
+    title: `${item.name_ua} — програма для свята у Боярці`,
+    description,
+    alternates: {
+      canonical,
+    },
     openGraph: {
-      title: `${item.name_ua} | ${site.brand_name_ua}`,
-      description: item.short_ua,
+      title: `${item.name_ua} — програма для свята у Боярці`,
+      description,
+      url: canonical,
       locale: "uk_UA",
       type: "article",
+    },
+    twitter: {
+      card: "summary",
+      title: `${item.name_ua} — програма для свята у Боярці`,
+      description,
     },
   };
 }

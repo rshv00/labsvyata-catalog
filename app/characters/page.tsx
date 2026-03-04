@@ -4,15 +4,26 @@ import { Breadcrumbs } from "@/components/ui/Breadcrumbs";
 import { CharacterCatalogClient } from "@/components/catalog/CharacterCatalogClient";
 import { characters } from "@/content/characters";
 import { site } from "@/content/site";
+import { getCanonicalUrl } from "@/lib/seo";
 
 export const metadata: Metadata = {
-  title: "Персонажі",
-  description: `Каталог персонажів для дитячих свят від ${site.brand_name_ua} у ${site.city_ua}.`,
+  title: "Аніматори та персонажі у Боярці",
+  description:
+    "Персонажі та аніматори у Боярці для дитячих свят: фільтруйте за віком, тематикою, тривалістю та ціною.",
+  alternates: {
+    canonical: getCanonicalUrl("/characters"),
+  },
   openGraph: {
-    title: `Персонажі | ${site.brand_name_ua}`,
-    description: `Переглядайте персонажів за віком, тривалістю та ціною у ${site.city_ua}.`,
+    title: `Аніматори та персонажі у Боярці | ${site.brand_name_ua}`,
+    description: "Каталог персонажів для дитячих свят у Боярці з пошуком, фільтрами та сортуванням.",
+    url: getCanonicalUrl("/characters"),
     locale: "uk_UA",
     type: "website",
+  },
+  twitter: {
+    card: "summary",
+    title: `Аніматори та персонажі у Боярці | ${site.brand_name_ua}`,
+    description: "Оберіть персонажа за віком, тривалістю та бюджетом.",
   },
 };
 

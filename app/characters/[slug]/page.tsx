@@ -9,10 +9,10 @@ import { ContactCtas } from "@/components/sections/ContactCtas";
 import { HowToOrder } from "@/components/sections/HowToOrder";
 import { CharacterCard } from "@/components/cards/CharacterCard";
 import { characters } from "@/content/characters";
-import { site } from "@/content/site";
 import { getRelatedCharactersByTags } from "@/lib/catalog";
 import { formatMinutes } from "@/lib/format";
 import { resolveCatalogImage, resolveCatalogImages } from "@/lib/instagram";
+import { getCanonicalUrl } from "@/lib/seo";
 
 type CharacterPageProps = {
   params: {
@@ -33,14 +33,28 @@ export function generateMetadata({ params }: CharacterPageProps): Metadata {
     };
   }
 
+  const durationText = item.duration_options_minutes.map((duration) => `${duration} хв`).join(", ");
+  const priceText = new Intl.NumberFormat("uk-UA").format(item.base_price_uah_from);
+  const description = `${item.short_ua} Вік: ${item.age_range_ua}. Тривалість: ${durationText}. Ціна від ${priceText} грн.`;
+  const canonical = getCanonicalUrl(`/characters/${item.slug}`);
+
   return {
-    title: item.name_ua,
-    description: `${item.short_ua} ${site.brand_name_ua}, ${site.city_ua}.`,
+    title: `${item.name_ua} — аніматор у Боярці`,
+    description,
+    alternates: {
+      canonical,
+    },
     openGraph: {
-      title: `${item.name_ua} | ${site.brand_name_ua}`,
-      description: item.short_ua,
+      title: `${item.name_ua} — аніматор у Боярці`,
+      description,
+      url: canonical,
       locale: "uk_UA",
       type: "article",
+    },
+    twitter: {
+      card: "summary",
+      title: `${item.name_ua} — аніматор у Боярці`,
+      description,
     },
   };
 }

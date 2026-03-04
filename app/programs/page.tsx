@@ -4,15 +4,25 @@ import { Breadcrumbs } from "@/components/ui/Breadcrumbs";
 import { ProgramCatalogClient } from "@/components/catalog/ProgramCatalogClient";
 import { programs } from "@/content/programs";
 import { site } from "@/content/site";
+import { getCanonicalUrl } from "@/lib/seo";
 
 export const metadata: Metadata = {
-  title: "Програми",
-  description: `Каталог шоу та програм для дитячих свят від ${site.brand_name_ua}.`,
+  title: "Програми для свят у Боярці",
+  description: "Програми для свят у Боярці: квести, шоу та тематичні формати для дітей різного віку.",
+  alternates: {
+    canonical: getCanonicalUrl("/programs"),
+  },
   openGraph: {
-    title: `Програми | ${site.brand_name_ua}`,
-    description: `Квести, шоу, майстер-класи та інші програми у ${site.city_ua}.`,
+    title: `Програми для свят у Боярці | ${site.brand_name_ua}`,
+    description: "Каталог програм для дитячих свят у Боярці з фільтрами за віком, тривалістю та ціною.",
+    url: getCanonicalUrl("/programs"),
     locale: "uk_UA",
     type: "website",
+  },
+  twitter: {
+    card: "summary",
+    title: `Програми для свят у Боярці | ${site.brand_name_ua}`,
+    description: "Оберіть програму свята за тематикою, віком і бюджетом.",
   },
 };
 

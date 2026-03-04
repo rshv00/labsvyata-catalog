@@ -4,21 +4,34 @@ import { Breadcrumbs } from "@/components/ui/Breadcrumbs";
 import { ContactCtas } from "@/components/sections/ContactCtas";
 import { site } from "@/content/site";
 import { formatPhoneHref } from "@/lib/format";
+import { getCanonicalUrl, getLocalBusinessJsonLd } from "@/lib/seo";
+
+const localBusinessJsonLd = getLocalBusinessJsonLd();
 
 export const metadata: Metadata = {
   title: "Контакти",
-  description: `Контакти ${site.brand_name_ua}: телефони, Telegram, Instagram, графік роботи.`,
+  description: `Контакти ${site.brand_name_ua} у Боярці: м. Боярка, ${site.address_street_ua}, телефони, Telegram, Instagram та графік роботи.`,
+  alternates: {
+    canonical: getCanonicalUrl("/contacts"),
+  },
   openGraph: {
     title: `Контакти | ${site.brand_name_ua}`,
-    description: "Швидкі способи зв’язку для узгодження дитячого свята.",
+    description: "Контакти у Боярці: адреса, телефони та месенджери для узгодження дитячого свята.",
+    url: getCanonicalUrl("/contacts"),
     locale: "uk_UA",
     type: "website",
+  },
+  twitter: {
+    card: "summary",
+    title: `Контакти | ${site.brand_name_ua}`,
+    description: "Адреса в Боярці, телефони та месенджери для швидкого зв’язку.",
   },
 };
 
 export default function ContactsPage() {
   return (
     <Container className="py-10">
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(localBusinessJsonLd) }} />
       <Breadcrumbs items={[{ href: "/", label: "Головна" }, { label: "Контакти" }]} />
       <h1 className="text-3xl font-black text-slate-900">Контакти</h1>
       <p className="mt-2 text-sm text-slate-700">Зручно зв’язатися через Telegram, Instagram або телефоном.</p>

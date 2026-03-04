@@ -5,6 +5,7 @@ import { site } from "@/content/site";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 import { MobileQuickActions } from "@/components/layout/MobileQuickActions";
+import { getCanonicalUrl } from "@/lib/seo";
 
 const exo = Exo_2({
   subsets: ["latin", "cyrillic"],
@@ -13,23 +14,34 @@ const exo = Exo_2({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://example.com"),
+  metadataBase: new URL(site.site_url),
   title: {
-    default: `${site.brand_name_ua} | Дитячі свята у ${site.city_ua}`,
-    template: `%s | ${site.brand_name_ua}`,
+    default: "Лабораторія свята — дитячі свята в Боярці",
+    template: "%s | Лабораторія свята — свята в Боярці",
+  },
+  description: "Організація дитячих свят у Боярці: аніматори, програми, ціни, свята в приміщенні та на виїзд.",
+  alternates: {
+    canonical: getCanonicalUrl("/"),
   },
   icons: {
     icon: [{ url: "/icon.png", type: "image/png" }],
     shortcut: ["/icon.png"],
     apple: [{ url: "/icon.png", type: "image/png" }],
   },
-  description: site.seo_description_ua,
   openGraph: {
-    title: `${site.brand_name_ua} | Дитячі свята`,
-    description: site.seo_description_ua,
+    title: "Лабораторія свята — дитячі свята в Боярці",
+    description: "Організація дитячих свят у Боярці: аніматори, програми, ціни, свята в приміщенні та на виїзд.",
+    url: getCanonicalUrl("/"),
+    siteName: site.brand_name_ua,
     locale: "uk_UA",
     type: "website",
   },
+  twitter: {
+    card: "summary",
+    title: "Лабораторія свята — дитячі свята в Боярці",
+    description: "Організація дитячих свят у Боярці: аніматори, програми, ціни, свята в приміщенні та на виїзд.",
+  },
+  verification: site.google_site_verification ? { google: site.google_site_verification } : undefined,
 };
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {

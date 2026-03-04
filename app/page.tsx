@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import { Container } from "@/components/layout/Container";
 import { CharacterCard } from "@/components/cards/CharacterCard";
@@ -10,9 +11,11 @@ import { pricing } from "@/content/pricing";
 import { site } from "@/content/site";
 import { getFeaturedCharacters, getFeaturedPrograms } from "@/lib/catalog";
 import { formatMinutes, formatPriceUah } from "@/lib/format";
+import { getCanonicalUrl, getLocalBusinessJsonLd } from "@/lib/seo";
 
 const featuredCharacters = getFeaturedCharacters(characters, 4);
 const featuredPrograms = getFeaturedPrograms(programs, 4);
+const localBusinessJsonLd = getLocalBusinessJsonLd();
 const packagePreview =
   pricing.package_groups?.length && pricing.package_groups.length > 0
     ? pricing.package_groups.flatMap((group) =>
@@ -26,9 +29,34 @@ const packagePreview =
         category_ua: "",
       }));
 
+export const metadata: Metadata = {
+  title: "Дитячі свята в Боярці: анімація, програми, ціни",
+  description:
+    "Лабораторія свята у Боярці: аніматори, програми, персонажі та актуальні ціни на свято в нашому приміщенні або свято на виїзд.",
+  alternates: {
+    canonical: getCanonicalUrl("/"),
+  },
+  openGraph: {
+    title: "Дитячі свята в Боярці: анімація, програми, ціни",
+    description:
+      "Аніматори, персонажі, програми та пакети для дитячих свят у Боярці: формати в приміщенні й на виїзд.",
+    url: getCanonicalUrl("/"),
+    locale: "uk_UA",
+    type: "website",
+  },
+  twitter: {
+    card: "summary",
+    title: "Дитячі свята в Боярці: анімація, програми, ціни",
+    description:
+      "Локальний каталог дитячих свят у Боярці: аніматори, програми та ціни.",
+  },
+};
+
 export default function HomePage() {
   return (
     <>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(localBusinessJsonLd) }} />
+
       <section className="border-b border-brand-100 bg-gradient-to-br from-white via-brand-50 to-brand-100">
         <Container className="py-10 md:py-20">
           <div className="max-w-3xl space-y-6">
@@ -104,6 +132,22 @@ export default function HomePage() {
               </li>
             ))}
           </ul>
+        </section>
+
+        <section className="rounded-2xl border border-slate-200 bg-white p-6 shadow-soft">
+          <h2 className="text-2xl font-black text-slate-900">Дитячі свята в Боярці: як обрати формат</h2>
+          <p className="mt-3 text-sm leading-relaxed text-slate-700">
+            Якщо ви плануєте дитячі свята в Боярці, важливо одразу визначити формат події, вік дітей і бажаний рівень
+            активності. Нас часто шукають як «Лабораторія свята Боярка» або «labsvyata Боярка», і ми справді працюємо локально
+            для родин міста та сусідніх населених пунктів. Наша команда підбирає аніматори та сценарій під конкретний запит: від
+            камерного дня народження до великої групи в садочку чи школі. У каталозі легко порівняти персонажів, готові програми
+            та ціни, щоб зрозуміти, який варіант підійде саме вашій сім’ї. Ми проводимо свято в нашому приміщенні з комфортним
+            таймінгом і зонами для активностей, а також організовуємо свято на виїзд у Боярці та поруч. На сторінці цін ви бачите
+            базові умови,
+            наповнення пакетів і додаткові опції без прихованих пунктів. Такий підхід допомагає швидко оцінити бюджет і
+            заздалегідь узгодити деталі: дату, локацію, кількість дітей та бажані акценти програми. Коли структура зрозуміла,
+            підготовка проходить спокійніше, а саме свято стає яскравим і комфортним для дітей та батьків.
+          </p>
         </section>
       </Container>
     </>

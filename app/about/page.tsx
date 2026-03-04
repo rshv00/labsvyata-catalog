@@ -3,13 +3,18 @@ import { Container } from "@/components/layout/Container";
 import { Breadcrumbs } from "@/components/ui/Breadcrumbs";
 import { ContactCtas } from "@/components/sections/ContactCtas";
 import { site } from "@/content/site";
+import { getCanonicalUrl } from "@/lib/seo";
 
 export const metadata: Metadata = {
   title: "Про нас",
   description: `Про команду ${site.brand_name_ua}: досвід, підхід і формат роботи.`,
+  alternates: {
+    canonical: getCanonicalUrl("/about"),
+  },
   openGraph: {
     title: `Про нас | ${site.brand_name_ua}`,
     description: "Дізнайтеся більше про команду та підхід до дитячих свят.",
+    url: getCanonicalUrl("/about"),
     locale: "uk_UA",
     type: "website",
   },

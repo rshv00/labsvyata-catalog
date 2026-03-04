@@ -3,17 +3,27 @@ import { Container } from "@/components/layout/Container";
 import { Breadcrumbs } from "@/components/ui/Breadcrumbs";
 import { pricing } from "@/content/pricing";
 import type { Package, PackageGroup } from "@/content/types";
-import { site } from "@/content/site";
-import { formatCurrencyUah, formatMinutes, formatPriceUah } from "@/lib/format";
+import { formatCurrencyUah, formatPriceUah } from "@/lib/format";
+import { getCanonicalUrl } from "@/lib/seo";
 
 export const metadata: Metadata = {
-  title: "Ціни",
-  description: `Пакети та додаткові опції ${site.brand_name_ua} у ${site.city_ua}.`,
+  title: "Ціни на дитячі свята в Боярці",
+  description:
+    "Актуальні ціни на дитячі свята в Боярці: пакети в приміщенні та на виїзд, правила за кількістю дітей і додаткові опції.",
+  alternates: {
+    canonical: getCanonicalUrl("/prices"),
+  },
   openGraph: {
-    title: `Ціни | ${site.brand_name_ua}`,
-    description: "Актуальні пакети та додаткові опції для дитячих свят.",
+    title: "Ціни на дитячі свята в Боярці",
+    description: "Порівняйте пакети: свято в приміщенні та свято на виїзд, з повним переліком послуг.",
+    url: getCanonicalUrl("/prices"),
     locale: "uk_UA",
     type: "website",
+  },
+  twitter: {
+    card: "summary",
+    title: "Ціни на дитячі свята в Боярці",
+    description: "Пакети в приміщенні та на виїзд, додаткові опції та прозорі умови розрахунку.",
   },
 };
 
@@ -68,6 +78,10 @@ function getDurationLabel(minutes: DurationKey): string {
   return minutes === 120 ? "2 години" : "3 години";
 }
 
+function getSharedTimingByDuration(minutes: DurationKey): string {
+  return minutes === 120 ? "1,5 години активних ігор + 30 хв перекус" : "2,5 години активних ігор + 30 хв перекус";
+}
+
 const packageGroups: PackageGroup[] =
   pricing.package_groups && pricing.package_groups.length > 0
     ? pricing.package_groups
@@ -98,6 +112,11 @@ export default function PricesPage() {
       <Breadcrumbs items={[{ href: "/", label: "Головна" }, { label: "Ціни" }]} />
       <h1 className="text-3xl font-black text-slate-900">Ціни</h1>
       <p className="mt-2 text-sm text-slate-700">Оберіть формат свята, тривалість та пакет.</p>
+      <p className="mt-3 rounded-2xl border border-brand-200 bg-brand-50 p-4 text-sm leading-relaxed text-slate-700">
+        Фінальна вартість формується за форматом події, тривалістю та кількістю дітей у групі. Для кожного блоку діють свої
+        правила за кількістю учасників, а за кожну наступну дитину понад ліміт додається фіксована доплата. Для формату на виїзд
+        трансфер за межі м. Боярка рахується окремо. Перед бронюванням узгодьте локацію, дату та наповнення пакета з менеджером.
+      </p>
 
       <section className="mt-6 space-y-6">
         {orderedPackageGroups.map((group) => {
@@ -119,6 +138,7 @@ export default function PricesPage() {
                 {DURATIONS.map((duration) => (
                   <section key={duration} className="rounded-2xl border border-brand-100 bg-brand-50/40 p-4">
                     <h3 className="text-xl font-black text-brand-900">{getDurationLabel(duration)}</h3>
+                    <p className="mt-1 text-sm text-slate-600">{getSharedTimingByDuration(duration)}</p>
                     <div className="mt-3 grid gap-3 sm:grid-cols-2">
                       {TIERS.map((tier) => {
                         const packageItem = matrix[duration][tier];
@@ -128,11 +148,7 @@ export default function PricesPage() {
                             <h4 className="text-lg font-black text-slate-900">{tier}</h4>
                             {packageItem ? (
                               <>
-                                <p className="mt-1 text-xs font-medium uppercase tracking-wide text-slate-500">
-                                  {formatMinutes(packageItem.duration_minutes)}
-                                </p>
                                 <p className="mt-2 text-2xl font-extrabold text-brand-700">{formatCurrencyUah(packageItem.price_uah_from)}</p>
-                                {packageItem.timing_ua ? <p className="mt-2 text-sm text-slate-700">{packageItem.timing_ua}</p> : null}
                                 <ul className="mt-3 list-disc space-y-1 pl-5 text-sm text-slate-700">
                                   {packageItem.includes_ua.map((line) => (
                                     <li key={line}>{line}</li>
