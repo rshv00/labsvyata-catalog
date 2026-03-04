@@ -24,9 +24,17 @@ export type Program = {
   price_uah_from: number;
   tags_ua: string[];
   included_ua: string[];
+  pricing_tiers?: ProgramPricingTier[];
+  pricing_notes_ua?: string[];
   hero_image: ImageRef;
   images: ImageRef[];
   is_featured?: boolean;
+};
+
+export type ProgramPricingTier = {
+  label_ua: string;
+  price_uah: number;
+  note_ua?: string;
 };
 
 export type Package = {
@@ -36,6 +44,15 @@ export type Package = {
   includes_ua: string[];
   price_uah_from: number;
   recommended_for_ua?: string;
+  timing_ua?: string;
+};
+
+export type PackageGroup = {
+  slug: string;
+  category_ua: string;
+  rule_ua: string;
+  notes_ua?: string[];
+  packages: Package[];
 };
 
 export type Addon = {
@@ -46,4 +63,4 @@ export type Addon = {
   tags_ua: string[];
 };
 
-export type Pricing = { packages: Package[]; addons: Addon[] };
+export type Pricing = { packages: Package[]; package_groups?: PackageGroup[]; addons: Addon[] };

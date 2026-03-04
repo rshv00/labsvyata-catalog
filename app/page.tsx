@@ -13,6 +13,18 @@ import { formatMinutes, formatPriceUah } from "@/lib/format";
 
 const featuredCharacters = getFeaturedCharacters(characters, 4);
 const featuredPrograms = getFeaturedPrograms(programs, 4);
+const packagePreview =
+  pricing.package_groups?.length && pricing.package_groups.length > 0
+    ? pricing.package_groups.flatMap((group) =>
+        group.packages.map((pkg) => ({
+          ...pkg,
+          category_ua: group.category_ua,
+        })),
+      )
+    : pricing.packages.map((pkg) => ({
+        ...pkg,
+        category_ua: "",
+      }));
 
 export default function HomePage() {
   return (
@@ -67,12 +79,12 @@ export default function HomePage() {
             </Link>
           </div>
           <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-4">
-            {pricing.packages.map((pkg) => (
+            {packagePreview.slice(0, 4).map((pkg) => (
               <article key={pkg.slug} className="rounded-2xl border border-slate-200 bg-white p-5 shadow-soft">
                 <h3 className="text-xl font-bold text-slate-900">{pkg.name_ua}</h3>
                 <p className="mt-2 text-sm text-slate-600">{formatMinutes(pkg.duration_minutes)}</p>
                 <p className="mt-2 text-lg font-extrabold text-brand-700">{formatPriceUah(pkg.price_uah_from)}</p>
-                <p className="mt-2 text-sm text-slate-700">{pkg.recommended_for_ua}</p>
+                <p className="mt-2 text-sm text-slate-700">{pkg.recommended_for_ua ?? pkg.category_ua}</p>
               </article>
             ))}
           </div>

@@ -11,7 +11,7 @@ import { ProgramCard } from "@/components/cards/ProgramCard";
 import { programs } from "@/content/programs";
 import { site } from "@/content/site";
 import { getRelatedProgramsByTags } from "@/lib/catalog";
-import { formatMinutes } from "@/lib/format";
+import { formatCurrencyUah, formatMinutes } from "@/lib/format";
 import { resolveCatalogImage, resolveCatalogImages } from "@/lib/instagram";
 
 type ProgramPageProps = {
@@ -79,7 +79,13 @@ export default function ProgramDetailPage({ params }: ProgramPageProps) {
           <h1 className="text-3xl font-black text-slate-900">{item.name_ua}</h1>
           <p className="text-sm leading-relaxed text-slate-700">{item.description_ua}</p>
           <div className="flex flex-wrap items-center gap-3">
-            <PriceBadge price={item.price_uah_from} />
+            {item.pricing_tiers?.length ? (
+              <span className="rounded-full border border-brand-200 bg-brand-50 px-4 py-2 text-sm font-semibold text-brand-800">
+                Вартість за тарифами
+              </span>
+            ) : (
+              <PriceBadge price={item.price_uah_from} />
+            )}
             <span className="rounded-full bg-slate-100 px-3 py-1 text-sm text-slate-700">{item.recommended_ages_ua}</span>
             <span className="rounded-full bg-slate-100 px-3 py-1 text-sm text-slate-700">{formatMinutes(item.duration_minutes)}</span>
           </div>
@@ -92,6 +98,30 @@ export default function ProgramDetailPage({ params }: ProgramPageProps) {
               ))}
             </ul>
           </div>
+
+          {item.pricing_tiers?.length ? (
+            <div>
+              <h2 className="text-sm font-bold uppercase tracking-wide text-slate-700">Вартість</h2>
+              <ul className="mt-2 divide-y divide-slate-200 rounded-xl border border-slate-200">
+                {item.pricing_tiers.map((tier) => (
+                  <li key={`${tier.label_ua}-${tier.price_uah}`} className="flex items-center justify-between gap-3 px-4 py-3">
+                    <div>
+                      <p className="text-sm font-semibold text-slate-900">{tier.label_ua}</p>
+                      {tier.note_ua ? <p className="text-xs text-slate-600">{tier.note_ua}</p> : null}
+                    </div>
+                    <p className="whitespace-nowrap text-sm font-extrabold text-brand-700">{formatCurrencyUah(tier.price_uah)}</p>
+                  </li>
+                ))}
+              </ul>
+              {item.pricing_notes_ua?.length ? (
+                <ul className="mt-3 list-disc space-y-1 pl-5 text-xs text-slate-700">
+                  {item.pricing_notes_ua.map((note) => (
+                    <li key={note}>{note}</li>
+                  ))}
+                </ul>
+              ) : null}
+            </div>
+          ) : null}
 
           <div>
             <h2 className="text-sm font-bold uppercase tracking-wide text-slate-700">Теги</h2>
