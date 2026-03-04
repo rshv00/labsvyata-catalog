@@ -44,7 +44,7 @@ export function Footer() {
           </a>
         </div>
         <div>
-          <h3 className="text-sm font-bold uppercase tracking-wide text-brand-800">Контакти</h3>
+          <h3 className="text-sm font-bold uppercase tracking-wide text-brand-800">Телефони</h3>
           <ul className="mt-3 space-y-2 text-sm text-slate-700">
             {site.phones.map((phone) => (
               <li key={phone}>
@@ -56,35 +56,8 @@ export function Footer() {
                 </a>
               </li>
             ))}
-            <li>
-              <a
-                className="hover:text-brand-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-500"
-                href={site.telegram_url}
-                target="_blank"
-                rel="noreferrer"
-              >
-                Telegram
-              </a>
-            </li>
-            <li>
-              <a
-                className="hover:text-brand-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-500"
-                href={site.viber_url}
-              >
-                Viber ({site.viber_phone_display_ua})
-              </a>
-            </li>
-            <li>
-              <a
-                className="hover:text-brand-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-500"
-                href={site.instagram_url}
-                target="_blank"
-                rel="noreferrer"
-              >
-                Instagram
-              </a>
-            </li>
           </ul>
+          <p className="mt-3 text-xs text-slate-600">Месенджери та Instagram доступні в блоці «Швидкий зв’язок».</p>
         </div>
         <div>
           <h3 className="text-sm font-bold uppercase tracking-wide text-brand-800">Швидкий зв’язок</h3>

@@ -22,8 +22,11 @@ export default function ContactsPage() {
       <Breadcrumbs items={[{ href: "/", label: "Головна" }, { label: "Контакти" }]} />
       <h1 className="text-3xl font-black text-slate-900">Контакти</h1>
       <p className="mt-2 text-sm text-slate-700">Зручно зв’язатися через Telegram, Instagram або телефоном.</p>
+      <div className="mt-4">
+        <ContactCtas />
+      </div>
 
-      <section className="mt-6 grid gap-4 md:grid-cols-2">
+      <section className="mt-6">
         <article className="rounded-2xl border border-slate-200 bg-white p-6 shadow-soft">
           <h2 className="text-lg font-bold text-slate-900">Телефони</h2>
           <ul className="mt-3 space-y-2 text-sm text-slate-700">
@@ -35,27 +38,7 @@ export default function ContactsPage() {
               </li>
             ))}
           </ul>
-        </article>
-
-        <article className="rounded-2xl border border-slate-200 bg-white p-6 shadow-soft">
-          <h2 className="text-lg font-bold text-slate-900">Соцмережі</h2>
-          <ul className="mt-3 space-y-2 text-sm text-slate-700">
-            <li>
-              <a href={site.telegram_url} target="_blank" rel="noreferrer" className="font-medium text-brand-700 hover:text-brand-800">
-                Telegram
-              </a>
-            </li>
-            <li>
-              <a href={site.viber_url} className="font-medium text-brand-700 hover:text-brand-800">
-                Viber ({site.viber_phone_display_ua})
-              </a>
-            </li>
-            <li>
-              <a href={site.instagram_url} target="_blank" rel="noreferrer" className="font-medium text-brand-700 hover:text-brand-800">
-                Instagram
-              </a>
-            </li>
-          </ul>
+          <p className="mt-3 text-xs text-slate-600">Telegram, Viber та Instagram доступні у кнопках вище.</p>
         </article>
       </section>
 
@@ -91,9 +74,6 @@ export default function ContactsPage() {
         </a>
       </section>
 
-      <div className="mt-6">
-        <ContactCtas />
-      </div>
     </Container>
   );
 }
