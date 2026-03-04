@@ -25,8 +25,8 @@ export const characters: Character[] = [
     duration_options_minutes: [60, 90, 120],
     base_price_uah_from: 2600,
     tags_ua: ["принцеси", "казкова програма", "пара персонажів", "Frozen"],
-    hero_image: { src: "/images/characters/anna-ta-elza/hero.jpg", alt: "Анна та Ельза" },
-    images: [{ src: "/images/characters/anna-ta-elza/hero.jpg", alt: "Анна та Ельза на святі" }],
+    hero_image: { src: "/images/characters/anna-ta-elza/hero.jpg", alt: "Анна та Ельза зі сніжинками" },
+    images: [{ src: "/images/characters/anna-ta-elza/photo-2.jpg", alt: "Анна та Ельза з тематичним реквізитом" }],
     is_featured: true,
   },
   {
