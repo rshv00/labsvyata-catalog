@@ -9,8 +9,8 @@ type ProgramCardProps = {
 };
 
 const programHeroObjectPosition: Record<string, string> = {
-  "banana-party": "center 24%",
-  "veselkovi-pryhody": "center 20%",
+  "banana-party": "center 16%",
+  "veselkovi-pryhody": "center 14%",
   "kazkovyi-svit-barbi-ta-podruzhok": "center 22%",
   "kholodne-sertse": "center 21%",
   "shkola-nevermor": "center 18%",
