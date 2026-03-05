@@ -8,6 +8,15 @@ type ProgramCardProps = {
   program: Program;
 };
 
+const programHeroObjectPosition: Record<string, string> = {
+  "banana-party": "center 24%",
+  "veselkovi-pryhody": "center 20%",
+  "kazkovyi-svit-barbi-ta-podruzhok": "center 22%",
+  "kholodne-sertse": "center 21%",
+  "shkola-nevermor": "center 18%",
+  "shcheniachyi-patrul": "center 23%",
+};
+
 export function ProgramCard({ program }: ProgramCardProps) {
   return (
     <article className="overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-soft transition hover:-translate-y-1 hover:shadow-md">
@@ -19,6 +28,7 @@ export function ProgramCard({ program }: ProgramCardProps) {
             fill
             sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
             className="object-cover"
+            style={{ objectPosition: programHeroObjectPosition[program.slug] ?? "center center" }}
           />
         </div>
         <div className="space-y-3 p-4">
