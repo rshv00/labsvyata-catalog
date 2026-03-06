@@ -146,6 +146,7 @@ export default function PricesPage() {
       <section className="mt-6 space-y-6">
         {orderedPackageGroups.map((group) => {
           const matrixGroup = isMatrixGroup(group.packages);
+          const childrenColumnsGroup = group.slug === "kindergarten-school-programs";
           const matrix = matrixGroup ? groupByLocationAndDuration(group.packages) : null;
           const sharedIncludes = matrixGroup ? null : getSharedIncludes(group.packages);
 
@@ -193,6 +194,23 @@ export default function PricesPage() {
                     </section>
                   ))}
                 </div>
+              ) : childrenColumnsGroup ? (
+                <section className="mt-5 rounded-2xl border border-brand-100 bg-brand-50/40 p-4">
+                  <h3 className="text-xl font-black text-brand-900">Кількість дітей</h3>
+                  <div className="mt-3 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+                    {group.packages.map((packageItem) => (
+                      <article key={packageItem.slug} className="rounded-2xl border border-slate-200 bg-white p-4 shadow-soft">
+                        <h4 className="text-lg font-black text-slate-900">{packageItem.name_ua}</h4>
+                        <p className="mt-2 text-2xl font-extrabold text-brand-700">{formatCurrencyUah(packageItem.price_uah_from)}</p>
+                        <ul className="mt-3 list-disc space-y-1 pl-5 text-sm text-slate-700">
+                          {(sharedIncludes ?? packageItem.includes_ua).map((line) => (
+                            <li key={line}>{line}</li>
+                          ))}
+                        </ul>
+                      </article>
+                    ))}
+                  </div>
+                </section>
               ) : (
                 <>
                   <h3 className="mt-4 text-lg font-black text-brand-900">Ціна</h3>
