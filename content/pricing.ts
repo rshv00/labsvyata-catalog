@@ -159,9 +159,57 @@ const outdoorParty: PackageGroup = {
   ],
 };
 
+const kindergartenAndSchoolPrograms: PackageGroup = {
+  slug: "kindergarten-school-programs",
+  category_ua: "Програми для садочків і молодших шкіл",
+  rule_ua: "Тривалість: 1 година",
+  notes_ua: ["Новорічні свята та випускні рахуються окремо.", "Трансфер за межі м. Боярка оплачується окремо."],
+  packages: [
+    {
+      slug: "kindergarten-school-up-to-15",
+      name_ua: "До 15 дітей",
+      duration_minutes: 60,
+      includes_ua: [
+        "2 ведучих (для груп понад 25 дітей — 3 ведучих)",
+        "Музичний супровід",
+        "Ігри з яскравим реквізитом",
+        "Дискотека з мильними бульбашками",
+        "Фігурки з повітряних кульок або флеш-тату (на вибір)",
+      ],
+      price_uah_from: 3500,
+    },
+    {
+      slug: "kindergarten-school-up-to-25",
+      name_ua: "До 25 дітей",
+      duration_minutes: 60,
+      includes_ua: [
+        "2 ведучих (для груп понад 25 дітей — 3 ведучих)",
+        "Музичний супровід",
+        "Ігри з яскравим реквізитом",
+        "Дискотека з мильними бульбашками",
+        "Фігурки з повітряних кульок або флеш-тату (на вибір)",
+      ],
+      price_uah_from: 4000,
+    },
+    {
+      slug: "kindergarten-school-over-25",
+      name_ua: "Понад 25 дітей (3 ведучих)",
+      duration_minutes: 60,
+      includes_ua: [
+        "2 ведучих (для груп понад 25 дітей — 3 ведучих)",
+        "Музичний супровід",
+        "Ігри з яскравим реквізитом",
+        "Дискотека з мильними бульбашками",
+        "Фігурки з повітряних кульок або флеш-тату (на вибір)",
+      ],
+      price_uah_from: 4700,
+    },
+  ],
+};
+
 export const pricing: Pricing = {
-  packages: [...indoorParty.packages, ...outdoorParty.packages],
-  package_groups: [indoorParty, outdoorParty],
+  packages: [...indoorParty.packages, ...outdoorParty.packages, ...kindergartenAndSchoolPrograms.packages],
+  package_groups: [indoorParty, outdoorParty, kindergartenAndSchoolPrograms],
   addons: [
     {
       slug: "pinata-themed",
