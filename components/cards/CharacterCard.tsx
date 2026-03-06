@@ -9,6 +9,10 @@ type CharacterCardProps = {
   character: Character;
 };
 
+const characterHeroObjectPosition: Record<string, string> = {
+  "yedynorizhka-ta-veselka": "center 15%",
+};
+
 export function CharacterCard({ character }: CharacterCardProps) {
   const minDuration = Math.min(...character.duration_options_minutes);
 
@@ -22,6 +26,7 @@ export function CharacterCard({ character }: CharacterCardProps) {
             fill
             sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
             className="object-cover"
+            style={{ objectPosition: characterHeroObjectPosition[character.slug] ?? "center 20%" }}
           />
         </div>
         <div className="space-y-3 p-4">
