@@ -9,13 +9,13 @@ import { getCanonicalUrl } from "@/lib/seo";
 export const metadata: Metadata = {
   title: "Ціни на дитячі свята в Боярці",
   description:
-    "Актуальні ціни на дитячі свята в Боярці: пакети в приміщенні, на виїзд та окремі програми для садочків і молодших шкіл.",
+    "Актуальні ціни на дитячі свята в Боярці: пакети в приміщенні, на виїзд та окремі програми для садочків і шкіл.",
   alternates: {
     canonical: getCanonicalUrl("/prices"),
   },
   openGraph: {
     title: "Ціни на дитячі свята в Боярці",
-    description: "Порівняйте пакети: свято в приміщенні, свято на виїзд і окремі програми для садочків та молодших шкіл.",
+    description: "Порівняйте пакети: свято в приміщенні, свято на виїзд і окремі програми для садочків та шкіл.",
     url: getCanonicalUrl("/prices"),
     locale: "uk_UA",
     type: "website",
@@ -23,7 +23,7 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary",
     title: "Ціни на дитячі свята в Боярці",
-    description: "Пакети в приміщенні, на виїзд та для садочків/молодших шкіл, додаткові опції і прозорі умови розрахунку.",
+    description: "Пакети в приміщенні, на виїзд та для садочків/шкіл, додаткові опції і прозорі умови розрахунку.",
   },
 };
 
@@ -106,37 +106,6 @@ function getSharedIncludes(packages: Package[]): string[] | null {
   return areAllEqual ? packages[0].includes_ua : null;
 }
 
-function getSharedDuration(packages: Package[]): number | null {
-  if (packages.length === 0) {
-    return null;
-  }
-
-  const baseDuration = packages[0].duration_minutes;
-  const areAllEqual = packages.every((packageItem) => packageItem.duration_minutes === baseDuration);
-
-  return areAllEqual ? baseDuration : null;
-}
-
-function getHoursLabel(minutes: number): string {
-  if (minutes % 60 !== 0) {
-    return `${minutes} хв`;
-  }
-
-  const hours = minutes / 60;
-  const lastDigit = hours % 10;
-  const lastTwoDigits = hours % 100;
-
-  if (lastDigit === 1 && lastTwoDigits !== 11) {
-    return `${hours} година`;
-  }
-
-  if ([2, 3, 4].includes(lastDigit) && ![12, 13, 14].includes(lastTwoDigits)) {
-    return `${hours} години`;
-  }
-
-  return `${hours} годин`;
-}
-
 const packageGroups: PackageGroup[] =
   pricing.package_groups && pricing.package_groups.length > 0
     ? pricing.package_groups
@@ -152,7 +121,7 @@ const packageGroups: PackageGroup[] =
 const groupPriority: Record<string, number> = {
   "Свято в нашому приміщенні": 0,
   "Свято на виїзд": 1,
-  "Програми для садочків і молодших шкіл": 2,
+  "Програми для садочків і шкіл": 2,
 };
 
 const orderedPackageGroups = [...packageGroups].sort((first, second) => {
@@ -179,7 +148,6 @@ export default function PricesPage() {
           const matrixGroup = isMatrixGroup(group.packages);
           const matrix = matrixGroup ? groupByLocationAndDuration(group.packages) : null;
           const sharedIncludes = matrixGroup ? null : getSharedIncludes(group.packages);
-          const sharedDuration = matrixGroup ? null : getSharedDuration(group.packages);
 
           return (
             <article key={group.slug} className="rounded-2xl border border-slate-200 bg-white p-5 shadow-soft md:p-6">
@@ -227,10 +195,18 @@ export default function PricesPage() {
                 </div>
               ) : (
                 <>
-                  {sharedDuration ? <p className="mt-4 text-sm text-slate-700">Тривалість програми: {getHoursLabel(sharedDuration)}</p> : null}
+                  <h3 className="mt-4 text-lg font-black text-brand-900">Ціна</h3>
+                  <ul className="mt-2 list-disc space-y-1 pl-5 text-sm text-slate-700">
+                    {group.packages.map((packageItem) => (
+                      <li key={packageItem.slug}>
+                        {packageItem.name_ua} — {formatCurrencyUah(packageItem.price_uah_from)}
+                      </li>
+                    ))}
+                  </ul>
+
                   {sharedIncludes?.length ? (
                     <div className="mt-4 rounded-2xl border border-brand-100 bg-brand-50/40 p-4">
-                      <h3 className="text-lg font-black text-brand-900">Що входить у програму</h3>
+                      <h3 className="text-lg font-black text-brand-900">Що входить</h3>
                       <ul className="mt-2 list-disc space-y-1 pl-5 text-sm text-slate-700">
                         {sharedIncludes.map((line) => (
                           <li key={line}>{line}</li>
@@ -238,21 +214,20 @@ export default function PricesPage() {
                       </ul>
                     </div>
                   ) : null}
-                  <div className="mt-5 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
-                    {group.packages.map((packageItem) => (
-                      <article key={packageItem.slug} className="rounded-2xl border border-slate-200 bg-white p-4 shadow-soft">
-                        <h3 className="text-lg font-black text-slate-900">{packageItem.name_ua}</h3>
-                        <p className="mt-2 text-2xl font-extrabold text-brand-700">{formatCurrencyUah(packageItem.price_uah_from)}</p>
-                        {!sharedIncludes?.length ? (
-                          <ul className="mt-3 list-disc space-y-1 pl-5 text-sm text-slate-700">
+                  {!sharedIncludes?.length ? (
+                    <div className="mt-4 space-y-3">
+                      {group.packages.map((packageItem) => (
+                        <article key={packageItem.slug} className="rounded-2xl border border-slate-200 bg-white p-4 shadow-soft">
+                          <h4 className="text-base font-black text-slate-900">{packageItem.name_ua}</h4>
+                          <ul className="mt-2 list-disc space-y-1 pl-5 text-sm text-slate-700">
                             {packageItem.includes_ua.map((line) => (
                               <li key={line}>{line}</li>
                             ))}
                           </ul>
-                        ) : null}
-                      </article>
-                    ))}
-                  </div>
+                        </article>
+                      ))}
+                    </div>
+                  ) : null}
                 </>
               )}
             </article>

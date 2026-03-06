@@ -161,7 +161,7 @@ const outdoorParty: PackageGroup = {
 
 const kindergartenAndSchoolPrograms: PackageGroup = {
   slug: "kindergarten-school-programs",
-  category_ua: "Програми для садочків і молодших шкіл",
+  category_ua: "Програми для садочків і шкіл",
   rule_ua: "Тривалість: 1 година",
   notes_ua: ["Новорічні свята та випускні рахуються окремо.", "Трансфер за межі м. Боярка оплачується окремо."],
   packages: [
