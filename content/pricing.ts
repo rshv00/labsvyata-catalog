@@ -170,7 +170,7 @@ const kindergartenAndSchoolPrograms: PackageGroup = {
       name_ua: "До 15 дітей",
       duration_minutes: 60,
       includes_ua: [
-        "2 ведучих (для груп понад 25 дітей — 3 ведучих)",
+        "2 ведучих",
         "Музичний супровід",
         "Ігри з яскравим реквізитом",
         "Дискотека з мильними бульбашками",
@@ -183,7 +183,7 @@ const kindergartenAndSchoolPrograms: PackageGroup = {
       name_ua: "До 25 дітей",
       duration_minutes: 60,
       includes_ua: [
-        "2 ведучих (для груп понад 25 дітей — 3 ведучих)",
+        "2 ведучих",
         "Музичний супровід",
         "Ігри з яскравим реквізитом",
         "Дискотека з мильними бульбашками",
@@ -193,10 +193,10 @@ const kindergartenAndSchoolPrograms: PackageGroup = {
     },
     {
       slug: "kindergarten-school-over-25",
-      name_ua: "Понад 25 дітей (3 ведучих)",
+      name_ua: "Понад 25 дітей",
       duration_minutes: 60,
       includes_ua: [
-        "2 ведучих (для груп понад 25 дітей — 3 ведучих)",
+        "3 ведучих",
         "Музичний супровід",
         "Ігри з яскравим реквізитом",
         "Дискотека з мильними бульбашками",
