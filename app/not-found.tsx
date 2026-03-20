@@ -1,5 +1,37 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import { Container } from "@/components/layout/Container";
+import { getCanonicalUrl } from "@/lib/seo";
+
+const notFoundUrl = getCanonicalUrl("/404");
+
+export const metadata: Metadata = {
+  title: "Сторінку не знайдено",
+  description: "Сторінка недоступна або була переміщена.",
+  robots: {
+    index: false,
+    follow: false,
+    googleBot: {
+      index: false,
+      follow: false,
+    },
+  },
+  alternates: {
+    canonical: notFoundUrl,
+  },
+  openGraph: {
+    title: "Сторінку не знайдено | Лабораторія свята",
+    description: "Сторінка недоступна або була переміщена.",
+    url: notFoundUrl,
+    locale: "uk_UA",
+    type: "website",
+  },
+  twitter: {
+    card: "summary",
+    title: "Сторінку не знайдено | Лабораторія свята",
+    description: "Сторінка недоступна або була переміщена.",
+  },
+};
 
 export default function NotFound() {
   return (
